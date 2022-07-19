@@ -7,7 +7,7 @@ use AlibabaCloud\Tea\Request;
 
 class OSSUtils
 {
-    const SIGN_KEY_LIST = [
+    public static $keylist = [
         'location',
         'cors',
         'objectMeta',
@@ -278,7 +278,7 @@ class OSSUtils
                 $canonicalizeResource .= '?';
             }
             foreach ($query as $k => $v) {
-                if (\in_array($k, self::SIGN_KEY_LIST) && null !== $v && '' !== $v) {
+                if (\in_array($k, self::$keylist) && null !== $v && '' !== $v) {
                     if ('?' === $canonicalizeResource[\strlen($canonicalizeResource) - 1]) {
                         $canonicalizeResource .= $k . '=' . $v;
                     } else {
